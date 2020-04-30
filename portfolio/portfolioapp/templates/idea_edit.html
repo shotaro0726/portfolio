@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'idea_edit.css' %}">
+{% endblock customcss %}
+{% block content %}
+<div class="bg">
+    <div class="box">
+        <div class="header">
+            <div class="title left">
+                CrossInnovation
+            </div>
+            <div class="right">
+                <a href="../my_page">マイページ</a>
+                <a href="../ideas_list">一覧画面</a>
+                <a href="../accounts/logout">ログアウト</a>
+            </div>
+        </div>
+        <form action="" method="POST">{% csrf_token %}
+            <h3>組み合わせる分野</h3>
+            <p>{{form.title}}</p>
+            <h3>内容</h3>
+            <p>{{form.content}}</p>
+            <input type="submit" value="更新する" class="submit">
+            <a href="{% url 'delete' pk=opinion.pk %}">削除する</a>
+        </form>
+        <footer>
+            <p>Copyright © 2020 CrossInnovation Inc. All Rights Reserved.</p>
+        </footer>
+    </div>
+</div>
+
+{% endblock content %}

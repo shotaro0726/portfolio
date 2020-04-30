@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>名前：{{profile.user.username}}</p>
+<p>出身地：{{profile.prefectures}}</p>
+<p>職種：{{profile.works}}</p>
+
+{% for opinion in opinions %}
+<div>
+    <p>主題：{{opinion.idea_list.genre}}</p>
+    <p>タイトル：{{opinion.title}}</p>
+    <p>内容：{{opinion.content}}
+    </p>
+</div>
+
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'main_list.css' %}">
+{% endblock customcss %}
+
+{% block content %}
+<div class="bg">
+    <div class="box">
+        <div class="header">
+            <div class="title left">
+                CrossInnovation
+            </div>
+            <div class="right">
+                <a href="{% url 'opinion' pk=pk2 %}">新規投稿</a>
+                <a href="../ideas_list">一覧画面</a>
+                <a href="../my_page">マイページ</a>
+                <a href="../accounts/logout">ログアウト</a>
+            </div>
+        </div>
+        <h1>{{main_title}} × 〇〇</h1>
+        {% for idea in page_obj %}
+        <div class="post">
+            <a href="{% url 'detail' idea.author %}">投稿者：{{idea.author}}</a>
+            <p style="margin-top: 16px;">組み合わせる分野：{{idea.title}}</p>
+            <p>内容</p>
+            <p class="content">{{idea.content}}</p>
+            <a href="{% url 'good' idea.pk %}" class="btn btn-primary" role="button"
+                aria-pressed="true">いいね：{{idea.good}}</a>
+        </div>
+        {% endfor %}
+        <div class="col-6 offset-3 justify-content-center">
+            {% if is_paginated %}
+            {% include 'pagination.html' %}
+            {% endif %}
+        </div>
+        <footer>
+            <p>Copyright © 2020 CrossInnovation Inc. All Rights Reserved.</p>
+        </footer>
+    </div>
+</div>
+
+
+{% endblock content%}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'opinion.css' %}">
+{% endblock customcss %}
+
+{% block content %}
+<div class="bg">
+    <div class="box">
+        <div class="header">
+            <div class="title left">
+                CrossInnovation
+            </div>
+            <div class="right">
+                <a href="../my_page">マイページ</a>
+                <a href="../ideas_list">一覧画面</a>
+                <a href="../accounts/logout">ログアウト</a>
+            </div>
+        </div>
+        <h1>{{ object }} × 〇〇</h1>
+        <form action="" method="POST">{% csrf_token %}
+            <h3>組み合わせ</h3>
+            <p><input type="text" name="title"></p>
+            <h3>内容</h3>
+            <p><textarea name="content" placeholder="最大300文字" maxlength="300" required></textarea></p>
+            <p><input type="hidden" name="author" value="{{ user.username }}"></p>
+            <input type="submit" value="作成する" class="submit">
+        </form>
+        <footer>
+            <p>Copyright © 2020 CrossInnovation Inc. All Rights Reserved.</p>
+        </footer>
+    </div>
+</div>
+
+{% endblock content %}
